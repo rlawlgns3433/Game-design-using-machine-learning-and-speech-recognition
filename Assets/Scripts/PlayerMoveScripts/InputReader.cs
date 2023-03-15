@@ -48,6 +48,8 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
 
     public void OnShoot(InputAction.CallbackContext context)
     {
-        throw new NotImplementedException();
+        if (!context.performed)
+            return;
+        Debug.Log("Shoot");
     }
 }
