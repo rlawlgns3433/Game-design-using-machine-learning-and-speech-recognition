@@ -10,6 +10,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     public Vector2 MoveComposite;
 
     public Action OnJumpPerformed;
+    
 
     private Controls controls;
 
@@ -43,5 +44,10 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     public void OnMove(InputAction.CallbackContext context)
     {
         MoveComposite = context.ReadValue<Vector2>();
+    }
+
+    public void OnShoot(InputAction.CallbackContext context)
+    {
+        throw new NotImplementedException();
     }
 }
