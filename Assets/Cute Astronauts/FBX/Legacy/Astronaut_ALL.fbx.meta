@@ -1,0 +1,212 @@
+fileFormatVersion: 2
+guid: 3fa6bb0d40101944dab626c74fb01810
+ModelImporter:
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      74: 689727143527590355
+    second: Happy
+  - first:
+      74: -5252816984213320552
+    second: idle
+  - first:
+      74: 5249470491336795268
+    second: Treading
+  - first:
+      74: -5317887767387918893
+    second: Floating
+  - first:
+      74: -1500354584072067147
+    second: Falling
+  - first:
+      74: -1610863427237328480
+    second: Walking
+  - first:
+      74: -5933712378818781917
+    second: Walking2
+  - first:
+      74: 7499963176143599311
+    second: Reaction
+  - first:
+      74: -5972857071629272013
+    second: Stabbing1
+  - first:
+      74: -1783430570193328232
+    second: Stabbing2
+  - first:
+      74: -8274311149877961454
+    second: Stabbing3
+  - first:
+      74: 6719204718095668130
+    second: all
+  - first:
+      74: -8789071839675277327
+    second: HappyIdle
+  - first:
+      74: 7267397709382041070
+    second: WarriorIdle
+  - first:
+      74: -7802160528148137020
+    second: FallingFlat
+  - first:
+      74: -8848240301271078672
+    second: Catwalk
+  - first:
+      74: -1263303526490775549
+    second: GoffyRunning
+  - first:
+      74: 1431295360424787170
+    second: JogForward
+  - first:
+      74: 3898671758408027237
+    second: RunForward
+  - first:
+      74: 3539032434131936826
+    second: MediumRun
+  - first:
+      74: 7952537194032246720
+    second: ZReactionHit
+  - first:
+      74: -9047445990513125599
+    second: KnockedOut
+  - first:
+      74: 2489939770423369847
+    second: DeathLeft
+  - first:
+      74: 7837136422212469151
+    second: ZAttack
+  - first:
+      74: -8050132981928642286
+    second: UpwardThrust
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BackpackColor1
+    second: {fileID: 2100000, guid: 67d0cdc6823da224fb9a4d3e60eb8cb4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BackpackColor2
+    second: {fileID: 2100000, guid: 6c0737e2c87a58943ac1c64105c4d2c8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BackpackColor3
+    second: {fileID: 2100000, guid: 61cc909119d2c584b8e60a5bffd004e5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BodyColor
+    second: {fileID: 2100000, guid: dff6b59179e2d7941b171cadf6496e1c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FaceColor
+    second: {fileID: 2100000, guid: c2bea9bdbfb7a2346abbd93245b44237, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GumColor
+    second: {fileID: 2100000, guid: 4a9d2ed3e511ede488001e6406f116c5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sticker1
+    second: {fileID: 2100000, guid: 7027e43c3812fd8439fa9bd1d76033b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sticker2
+    second: {fileID: 2100000, guid: c2e515cb7ac7f6449acc93bfffe76a5c, type: 2}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 1
+  humanoidOversampling: 1
+  avatarSetup: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
