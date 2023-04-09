@@ -15,7 +15,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
 
     private Controls controls;
     [SerializeField]
-    GameObject player;
+    GameObject bulletPos;
 
     public void OnEnable()
     {
@@ -73,7 +73,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
         if (disable)
             return;
         Debug.Log("Shoot");
-        BulletManager bulletManager = player.GetComponent<BulletManager>();
+        BulletManager bulletManager = bulletPos.GetComponent<BulletManager>();
         bulletManager.GetBulletPrefeb();
     }
 }
