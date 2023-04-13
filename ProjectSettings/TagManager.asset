@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Border
   - Environment
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Envionment
   - Water
   - UI
   - 

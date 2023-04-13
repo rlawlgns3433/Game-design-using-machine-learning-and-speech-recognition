@@ -388,5 +388,13 @@ namespace StarterAssets
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
         }
+        private void OnShoot()
+        {
+            if (_input.shoot)
+            {
+                PlayerShoot playerShoot = transform.gameObject.GetComponent<PlayerShoot>();
+                playerShoot.Shoot();
+            }
+        }
     }
 }
