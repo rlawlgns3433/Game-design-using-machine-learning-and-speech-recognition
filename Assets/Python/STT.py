@@ -9,8 +9,10 @@ import pyaudio
 
 # Redis Server에 접속
 rd=None
-svr = ['10.20.11.1',6379]
+svr = ['10.20.11.16',6006]
 # 음성 인식기 초기화
+
+#api_key = "AIzaSyCcdpUD3exNjx1vl4ILUXycq-QqdgToGyY"
 
 STT_channel = 'STT_BOX1'
 
@@ -28,12 +30,16 @@ def SpeakAnyTime() :
         # 1초간 소음 정도를 측정
         print("Please talk...")
         r.adjust_for_ambient_noise(source)
+
         # 마이크로부터 음성을 인식
         audio_data = r.listen(source)
+
         print("Recognizing...")
+
         # Google Web Speech API를 이용해 음성을 문자로 변환, Redis Server에 변환된 문자를 publish
         try : 
-            text = sys.argv[1] + ',' + r.recognize_google(audio_data, language = "ko-KR'")
+            text = sys.argv[1] + ',' + r.recognize_google(audio_data,language = 'ko-KR')
+
             rd.publish(channel= STT_channel, message=text)
         except : 
             text = ""
