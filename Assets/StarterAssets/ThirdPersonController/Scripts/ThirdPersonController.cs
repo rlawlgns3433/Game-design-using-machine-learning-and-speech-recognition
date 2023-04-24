@@ -98,6 +98,9 @@ namespace StarterAssets
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
 
+
+
+
 #if ENABLE_INPUT_SYSTEM 
         private PlayerInput _playerInput;
 #endif
@@ -105,6 +108,7 @@ namespace StarterAssets
         private CharacterController _controller;
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
+        
 
         private const float _threshold = 0.01f;
 
@@ -135,8 +139,9 @@ namespace StarterAssets
         private void Start()
         {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            
+
             _hasAnimator = TryGetComponent(out _animator);
+            
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
 #if ENABLE_INPUT_SYSTEM 
@@ -277,6 +282,8 @@ namespace StarterAssets
                 _animator.SetFloat(_animIDSpeed, _animationBlend);
                 _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
             }
+
+            //animator
         }
 
         private void JumpAndGravity()
@@ -346,6 +353,8 @@ namespace StarterAssets
             {
                 _verticalVelocity += Gravity * Time.deltaTime;
             }
+
+            //animation
         }
 
         private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
@@ -394,6 +403,7 @@ namespace StarterAssets
             {
                 PlayerShoot playerShoot = transform.gameObject.GetComponent<PlayerShoot>();
                 playerShoot.Shoot();
+
             }
         }
     }

@@ -21,6 +21,13 @@ namespace StarterAssets
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 
+		Animator animator;
+
+        private void Start()
+        {
+			animator = GetComponent<Animator>();
+        }
+
 #if ENABLE_INPUT_SYSTEM
 		public void OnMove(InputValue value)
 		{
