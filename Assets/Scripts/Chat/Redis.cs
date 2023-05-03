@@ -1,6 +1,7 @@
 using StackExchange.Redis;
 using System;
 using UnityEngine;
+using TMPro;
 
 // Redis 胶农赋飘 教臂沛 备己
 public class Redis : Singleton<Redis>
@@ -55,16 +56,24 @@ public class Redis : Singleton<Redis>
 
     private void Start()
     {
+        
         Init(svr.host, svr.port, svr.password);
+    }
+
+    private void Update()
+    {
+        
     }
 
     public void Publish(string channel, string message)
     {
         Debug.Log("subscribers : " + sub.ToString());
         if (sub != null)
+        {
             sub.Publish(channel, message);
-    }
+        }
 
+    }
     public void Subscribe(string channel, Action<RedisChannel, RedisValue> action)
     {
         sub.Subscribe(channel, action);
