@@ -1231,7 +1231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80cf69194851fe94baad4d4e570273c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  commentPrefab: {fileID: 343925314278262177, guid: 7d7d53eae4aa5984ca2dd3b3dedde8d9, type: 3}
+  commentPrefab: {fileID: 6609110594879964901, guid: 7903c1dfd80e6c14f897384d2807ef64, type: 3}
   scrollRect: {fileID: 1455837661}
   scrollParent: {fileID: 1178163763}
   canv: {fileID: 38981838}
