@@ -24,7 +24,7 @@ public class PlayerShoot : MonoBehaviour
     {
         Debug.Log("Shoot");
         BulletController bulletController = bulletPoint.GetComponent<BulletController>();
-        bulletController.fireBullet();
+        bulletController.FireBullet();
         CheckHitTag();
     }
     void CheckHitTag()

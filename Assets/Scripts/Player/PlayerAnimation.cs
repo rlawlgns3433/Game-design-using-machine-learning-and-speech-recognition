@@ -10,7 +10,7 @@ public class PlayerAnimation : MonoBehaviour
 	{
 		mAnimator = gameObject.GetComponent<Animator>();
 	}
-    private void FixedUpdate()
+    private void Update()
     {
 		MovingAnim();
 		ShootingAnim();
@@ -31,12 +31,13 @@ public class PlayerAnimation : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Mouse0))
         {
 			mAnimator.SetBool("Shooting", true);
+			mAnimator.SetBool("Walking", false);
+			mAnimator.SetBool("Idle", false);
         }
     }
 	public void IdleAnim()
     {
-		if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKeyDown(KeyCode.Mouse0)) ;
-		else
+		if (!(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKeyDown(KeyCode.Mouse0)))
 		{
 			mAnimator.SetBool("Shooting", false);
 			mAnimator.SetBool("Walking", false);

@@ -16,12 +16,12 @@ public class BulletController : MonoBehaviour
     {
     }
 
-    public void fireBullet()
+    public void FireBullet()
     {
-        Invoke("fireDelay",delay);
+        Invoke(nameof(FireDelay), delay);
     }
 
-    void fireDelay()
+    void FireDelay()
     {
         GameObject bullet = Instantiate(bulletPrefab);
         bullet.transform.position = transform.position;
