@@ -1051,7 +1051,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 746942536}
   m_HandleRect: {fileID: 746942535}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 0.6666667
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1204,6 +1204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a54a135c27950d4dbc1e2db8a0ff82d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entireMessage: 
 --- !u!4 &1529924144
 Transform:
   m_ObjectHideFlags: 0
@@ -1236,6 +1237,7 @@ MonoBehaviour:
   scrollParent: {fileID: 1178163763}
   canv: {fileID: 38981838}
   chatInput: {fileID: 1876102816}
+  scrollbarVertical: {fileID: 1383674901}
 --- !u!1 &1651664070
 GameObject:
   m_ObjectHideFlags: 0

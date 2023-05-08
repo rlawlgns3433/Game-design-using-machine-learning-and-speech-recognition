@@ -6,6 +6,8 @@ using TMPro;
 // Redis 胶农赋飘 教臂沛 备己
 public class Redis : Singleton<Redis>
 {
+    [HideInInspector]
+    public string entireMessage = "";
     struct ServerInfo
     {
         public string host;
