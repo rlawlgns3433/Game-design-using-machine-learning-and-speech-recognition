@@ -13,7 +13,7 @@ public class PlayerAnimation : MonoBehaviour
     private void Update()
     {
 		MovingAnim();
-		ShootingAnim();
+		//ShootingAnim();
 		IdleAnim();
     }
 
@@ -28,12 +28,12 @@ public class PlayerAnimation : MonoBehaviour
     }
 	public void ShootingAnim()
     {
-		if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
+		//if (Input.GetKeyDown(KeyCode.Mouse0))
+  //      {
 			mAnimator.SetBool("Shooting", true);
 			mAnimator.SetBool("Walking", false);
 			mAnimator.SetBool("Idle", false);
-        }
+        //}
     }
 	public void IdleAnim()
     {
