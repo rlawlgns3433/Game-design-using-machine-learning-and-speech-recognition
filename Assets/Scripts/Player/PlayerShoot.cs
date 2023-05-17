@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
@@ -22,21 +22,17 @@ public class PlayerShoot : MonoBehaviour
         {
             delayTimer -= Time.deltaTime;
         }
-        CheckShoot();
+        //CheckShoot();
         CheckBulletPoint();
 
     }
-    void CheckShoot()
+    public void CheckShoot()
     {
-
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (delayTimer <= 0)
         {
-            if(delayTimer<=0)
-            {
-                StartCoroutine(WaitforShoot());
+            StartCoroutine(WaitforShoot());
 
-                delayTimer = shootDelay;
-            }
+            delayTimer = shootDelay;
         }
 
     }
