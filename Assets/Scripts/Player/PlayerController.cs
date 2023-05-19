@@ -1,28 +1,52 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
+
 
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody rigid;
-    PlayerInput.ActionEvent actionEvent;
     private Vector3 moveDirection;
+    private bool enShoot = true;
+
+    [Header("Move Value Adjust")]
     [SerializeField]
     private float moveSpeed = 4f;
+
+    [Header("Jump Value Adjust")]
     [SerializeField]
     private float jumpDelay = 1f;
     [SerializeField]
     private float jumpTimer;
     [SerializeField]
     private float jumpPower = 3f;
+
+    [Header("Cinemachine")]
+
     [SerializeField]
-    private bool enShoot = true;
-    void Awake()
-    {
-        actionEvent = new();
-    }
+    private GameObject CinemachineCameraTarget;
+
+    [SerializeField]
+    private bool cursorInputForLook = true;
+
+    [Tooltip("How far in degrees can you move the camera up")]
+    [SerializeField]
+    private float TopClamp;
+
+    [Tooltip("How far in degrees can you move the camera down")]
+    [SerializeField]
+    private float BottomClamp;
+
+    [Tooltip("Additional degress to override the camera. Useful for fine tuning camera position when locked")]
+    [SerializeField]
+    private float CameraAngleOverride = 0.0f;
+    private float cinemachineTargetYaw;
+    private float cinemachineTargetPitch;
+
     private void Start()
     {
         rigid = GetComponent<Rigidbody>();
+        cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
     }
     private void Update()
     {
@@ -44,7 +68,21 @@ public class PlayerController : MonoBehaviour
     }
     void OnLook(InputValue value)
     {
+        if (cursorInputForLook)
+        {
+            Vector2 input = value.Get<Vector2>();
+            if (input.sqrMagnitude >= 0.01f)
+            {
+                float deltaTimeMultiplier = 1.0f;
+                cinemachineTargetYaw += input.x * deltaTimeMultiplier;
+                cinemachineTargetPitch += input.y * deltaTimeMultiplier;
 
+            }
+            cinemachineTargetYaw = ClampAngle(cinemachineTargetYaw, float.MinValue, float.MaxValue);
+            cinemachineTargetPitch = ClampAngle(cinemachineTargetPitch, BottomClamp, TopClamp);
+            CinemachineCameraTarget.transform.rotation = Quaternion.Euler(-cinemachineTargetPitch - CameraAngleOverride, cinemachineTargetYaw, 0.0f);
+            transform.rotation = Quaternion.Euler(transform.rotation.x, cinemachineTargetYaw, transform.rotation.y);
+        }
     }
     void OnJump()
     {
@@ -81,5 +119,15 @@ public class PlayerController : MonoBehaviour
         {
             jumpTimer -= Time.deltaTime;
         }
+    }
+    private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
+    {
+        if (lfAngle < -360f) lfAngle += 360f;
+        if (lfAngle > 360f) lfAngle -= 360f;
+        return Mathf.Clamp(lfAngle, lfMin, lfMax);
+    }
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        Cursor.lockState = hasFocus ? CursorLockMode.Locked : CursorLockMode.None;
     }
 }
