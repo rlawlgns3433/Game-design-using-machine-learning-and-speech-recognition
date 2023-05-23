@@ -251,7 +251,7 @@ namespace StarterAssets
                              new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 
         }
-
+         
         private void JumpAndGravity()
         {
             if (Grounded)
