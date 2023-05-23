@@ -5,10 +5,14 @@ public class PlayerShoot : MonoBehaviour
 {
     [SerializeField]
     private GameObject bulletPoint;
+
     [SerializeField]
     private GameObject playerCameraRoot;
+
     [SerializeField]
     private float shootDelay = 0.7f;
+
+    //build 전 private로 변경
     public float delayTimer = 0;
     PlayerAnimation playerAnimation;
 
@@ -44,7 +48,9 @@ public class PlayerShoot : MonoBehaviour
     }
     void CheckBulletPoint()
     {
-        Debug.DrawRay(bulletPoint.transform.position, (playerCameraRoot.transform.position - Camera.main.transform.position) * 15, Color.red);
+        Vector3 screenMiddlePoint = Camera.main.ScreenToWorldPoint(new Vector3(0.5f, 0.7f, 0.0f));
+        //Debug.DrawRay(bulletPoint.transform.position, (playerCameraRoot.transform.position - Camera.main.transform.position) * 15, Color.red);
+        Debug.DrawRay(bulletPoint.transform.position, (playerCameraRoot.transform.position - screenMiddlePoint) * 15, Color.green);
 
     }
     public void Shoot()
