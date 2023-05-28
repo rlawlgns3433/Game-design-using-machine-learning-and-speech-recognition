@@ -68,6 +68,7 @@ public class PlayerControllerNew : MonoBehaviour
         }
         JumpDelayTimer();
         PlayerMove();
+        OnClickESC();
     }
     void OnMove(InputValue value)
     {
@@ -142,5 +143,13 @@ public class PlayerControllerNew : MonoBehaviour
     private void OnApplicationFocus(bool hasFocus)
     {
         Cursor.lockState = hasFocus ? CursorLockMode.Locked : CursorLockMode.None;
+    }
+    private void OnClickESC()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Cursor.lockState = CursorLockMode.None;
+
+        }
     }
 }
