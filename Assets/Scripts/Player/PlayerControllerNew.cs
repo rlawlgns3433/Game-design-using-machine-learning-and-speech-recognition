@@ -106,7 +106,7 @@ public class PlayerControllerNew : MonoBehaviour
         }
 
     }
-    void OnShoot()
+    public void OnShoot()
     {
         if (enShoot)
         {
