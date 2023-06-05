@@ -67,11 +67,11 @@ public class PlayerShoot : MonoBehaviour
         {
             if (hit.collider.CompareTag("Enemy"))
             {
-                Debug.Log("Ray hit Enemy");
+                //Debug.Log("Ray hit Enemy");
             }
             if (hit.collider.CompareTag("Environment"))
             {
-                Debug.Log("Ray hit Environment");
+                //Debug.Log("Ray hit Environment");
             }
         }
     }
