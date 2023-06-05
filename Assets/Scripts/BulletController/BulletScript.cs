@@ -10,13 +10,13 @@ public class BulletScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("√—æÀ¿Ã ¿˚¿ª ∏¬√„");
-            playAgent.SetReward(+1.0f);
+            //playAgent.SetReward(+1.0f);
             Destroy(gameObject);
         }
         if (collision.gameObject.CompareTag("Environment") || collision.gameObject.CompareTag("Wall")|| collision.gameObject.CompareTag("OtherObject"))
         {
             Debug.Log("√—æÀ¿Ã »Ø∞Ê¿ª ∏¬√„");
-            playAgent.SetReward(-1.0f /playAgent.MaxStep);
+            //playAgent.SetReward(-1.0f /playAgent.MaxStep);
             Destroy(gameObject);
         }
     }
