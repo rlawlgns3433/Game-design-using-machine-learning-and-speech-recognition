@@ -417,22 +417,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6274256660125486793, guid: 5ce09d20b704d8a4db06aa14cbb373e8, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.39999998
-      objectReference: {fileID: 0}
-    - target: {fileID: 6274256660125486793, guid: 5ce09d20b704d8a4db06aa14cbb373e8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 6274256660125486793, guid: 5ce09d20b704d8a4db06aa14cbb373e8, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6274256660125486793, guid: 5ce09d20b704d8a4db06aa14cbb373e8, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
     - target: {fileID: 7498699966708081313, guid: 5ce09d20b704d8a4db06aa14cbb373e8, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -476,22 +460,6 @@ PrefabInstance:
     - target: {fileID: 7498699966708081313, guid: 5ce09d20b704d8a4db06aa14cbb373e8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7498699966708081320, guid: 5ce09d20b704d8a4db06aa14cbb373e8, type: 3}
-      propertyPath: m_MaxRayDegrees
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 7498699966708081321, guid: 5ce09d20b704d8a4db06aa14cbb373e8, type: 3}
-      propertyPath: m_Model
-      value: 
-      objectReference: {fileID: 5022602860645237092, guid: 36ae3fcdc3734f74eb351b5801c8e4c4, type: 3}
-    - target: {fileID: 7498699966708081326, guid: 5ce09d20b704d8a4db06aa14cbb373e8, type: 3}
-      propertyPath: m_Constraints
-      value: 116
-      objectReference: {fileID: 0}
-    - target: {fileID: 7498699966708081326, guid: 5ce09d20b704d8a4db06aa14cbb373e8, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7498699966708081332, guid: 5ce09d20b704d8a4db06aa14cbb373e8, type: 3}
       propertyPath: m_Name

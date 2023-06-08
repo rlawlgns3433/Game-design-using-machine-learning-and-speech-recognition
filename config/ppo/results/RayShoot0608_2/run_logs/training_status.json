@@ -1,0 +1,29 @@
+{
+    "Shooting": {
+        "checkpoints": [
+            {
+                "steps": 362448,
+                "file_path": "results\\RayShoot0608\\Shooting\\Shooting-362448.onnx",
+                "reward": null,
+                "creation_time": 1686207025.5226204,
+                "auxillary_file_paths": [
+                    "results\\RayShoot0608\\Shooting\\Shooting-362448.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 362448,
+            "file_path": "results\\RayShoot0608\\Shooting.onnx",
+            "reward": null,
+            "creation_time": 1686207025.5226204,
+            "auxillary_file_paths": [
+                "results\\RayShoot0608\\Shooting\\Shooting-362448.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}

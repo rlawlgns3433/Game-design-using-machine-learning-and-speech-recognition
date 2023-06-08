@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
+using UnityEngine;
 
 public class PlayAgent : Agent
 {
@@ -34,14 +32,14 @@ public class PlayAgent : Agent
 
     public override void Initialize()
     {
-        MaxStep = 1000;
+        MaxStep = 3000;
         rayPerceptionSensorComponent3D = GetComponent<RayPerceptionSensorComponent3D>();
     }
 
     public override void OnEpisodeBegin()
     {
         vel = angle_vel = Vector3.zero;
-        transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+        //transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
         ChangeTargetPosition();
     }
 
@@ -51,8 +49,9 @@ public class PlayAgent : Agent
         sensor.AddObservation(transform.localPosition.z);
         sensor.AddObservation(rw);
         sensor.AddObservation(transform.localRotation.y);
-        sensor.AddObservation(Target.localPosition.x);
-        sensor.AddObservation(Target.localPosition.z);
+        //Target위치를 직접 받아와서 핵처럼 위치를 아는건 아닌가?
+        //sensor.AddObservation(Target.localPosition.x);
+        //sensor.AddObservation(Target.localPosition.z);
         sensor.AddObservation(RayCastInfo(rayPerceptionSensorComponent3D));
     }
 
@@ -64,10 +63,20 @@ public class PlayAgent : Agent
         Vector3 dir = Vector3.zero;
         Vector3 rot = Vector3.zero;
 
-        float angle_btw_v = RayCastInfo(rayPerceptionSensorComponent3D);
-        if (angle_btw_v != 0.0)
+        if (!(RayCastInfo(rayPerceptionSensorComponent3D) == null))
         {
+            if (CheckDistance(RayCastInfo(rayPerceptionSensorComponent3D)) < 3.0f|| CheckDistance(RayCastInfo(rayPerceptionSensorComponent3D)) > 15.0f)
+            {
+                AddReward(-1.0f / (float)MaxStep);
+            }
+            else
+            {
+                AddReward(+0.1f);
+            }
+
             AddReward(+1.0f / (float)MaxStep);
+
+            float angle_btw_v = CheckAngle(RayCastInfo(rayPerceptionSensorComponent3D));
             if (Mathf.Abs(angle_btw_v) <= 10)
             {
                 AddReward(+0.3f);
@@ -75,10 +84,14 @@ public class PlayAgent : Agent
             }
         }
 
+
+
+
         switch (action[0])
         {
             case 1: dir = transform.forward; break;
-            case 2: dir = -transform.forward; break;
+            case 2: break;
+            //case 2: dir = -transform.forward; break;
         }
 
         switch (action[1])
@@ -87,17 +100,18 @@ public class PlayAgent : Agent
             case 2: rot = transform.up; break;
         }
 
-        transform.Rotate(rot, Time.deltaTime * 200.0f);
+        transform.Rotate(rot, Time.deltaTime * 100.0f);
         //this.GetComponent<Rigidbody>().AddForce(dir * 2.0f, ForceMode.VelocityChange);
         //this.transform.TransformPoint((transform.position + dir) * Time.deltaTime);
         StartCoroutine(PlayerMoveML(dir));
-        //transform.localPosition = transform.localPosition + (transform.localRotation * dir * 4.0f * Time.deltaTime);
-        this.GetComponent<Rigidbody>().velocity = dir * 2.0f;
+        //transform.localPosition = transform.localPosition + (transform.localRotation * dir * 5.0f * Time.deltaTime);
+        //this.GetComponent<Rigidbody>().velocity = dir * 2.0f;
         AddReward(-1.0f / (float)(MaxStep));
 
     }
-    IEnumerator PlayerMoveML(Vector3 dir) {
-        transform.localPosition = transform.localPosition + (transform.localRotation * dir * 4.0f * Time.deltaTime);
+    IEnumerator PlayerMoveML(Vector3 dir)
+    {
+        transform.localPosition = transform.localPosition + (transform.localRotation * dir * 7.0f * Time.deltaTime);
         yield return new WaitForEndOfFrame();
     }
 
@@ -139,7 +153,7 @@ public class PlayAgent : Agent
     }
 
 
-    private float RayCastInfo(RayPerceptionSensorComponent3D rayComponent)
+    private GameObject RayCastInfo(RayPerceptionSensorComponent3D rayComponent)
     {
         var rayOutputs = RayPerceptionSensor
                 .Perceive(rayComponent.GetRayPerceptionInput())
@@ -173,24 +187,48 @@ public class PlayAgent : Agent
                     //Debug.Log(dispStr);
 
 
-                    // Ray -> Enemy
-                    // 현재 True 반환
-                    // Angle이 절대값 10이내 -> +1.0
+                    //// Ray -> Enemy
+                    //// 현재 True 반환
+                    //// Angle이 절대값 10이내 -> +1.0
                     if (goHit.tag == "Enemy")
                     {
-                        return CheckAngle(goHit);       
+                        //return CheckAngle(goHit);
+                        return goHit;
                     }
-                    else return 0.0f;
+                    else return null;
+                    //return goHit;
                 }
-                else return 0.0f;
+                else return null;
             }
         }
-        return 0.0f;
+        return null;
     }
 
     public void ChangeTargetPosition()
     {
-        Target.transform.localPosition = new Vector3(Random.Range(10.0f, -5.0f), 1.0f, Random.Range(10.0f, -5.0f));
+        float rangeX = 31.0f;
+        float rangeY = -31.0f;
+        float randX = Random.Range(rangeX, rangeY);
+        float randZ = Random.Range(rangeX, rangeY);
+        if (Mathf.Abs(randZ) <= 22 && Mathf.Abs(randZ) > 16)
+        {
+            do {
+                randX = Random.Range(rangeX, rangeY);
+            } while (Mathf.Abs(randX) <= 20.5 && Mathf.Abs(randX) > 4);
+        }
+        else if (Mathf.Abs(randZ) <= 16 && Mathf.Abs(randZ) > 11)
+        {
+            do{
+                randX = Random.Range(rangeX, rangeY);
+            } while (Mathf.Abs(randX) <= 20.5 && Mathf.Abs(randX) > 11.5);
+        }
+        else if (Mathf.Abs(randZ) <= 11 && Mathf.Abs(randZ) > 3)
+        {
+            do{
+                randX = Random.Range(rangeX, rangeY);
+            } while (Mathf.Abs(randX) <= 20.5 && Mathf.Abs(randX) > 15.5);
+        }
+        Target.transform.localPosition = new Vector3(randX, 1.0f, randZ);
     }
 
     public float CheckAngle(GameObject goHit)
@@ -200,5 +238,11 @@ public class PlayAgent : Agent
         float ag = Vector3.SignedAngle(transform.forward, vvv, transform.up);
 
         return ag;
+    }
+
+    public float CheckDistance(GameObject enemy)
+    {
+        float dis = Vector3.Distance(enemy.transform.position, transform.position);
+        return dis;
     }
 }
