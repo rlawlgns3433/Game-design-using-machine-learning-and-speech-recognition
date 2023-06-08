@@ -8,7 +8,7 @@ public class MLBulletScript : MonoBehaviour
     public PlayAgent playAgent;
     private void Awake()
     {
-        GameObject player = GameObject.Find("Player");
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
         playAgent = player.GetComponent<PlayAgent>();
 
     }

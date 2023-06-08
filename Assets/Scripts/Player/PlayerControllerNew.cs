@@ -120,7 +120,10 @@ public class PlayerControllerNew : MonoBehaviour
         if (hasControl)
         {
             moveDirection = moveDirection.normalized;
-            transform.localPosition = transform.localPosition + (transform.rotation*moveDirection * moveSpeed * Time.deltaTime);
+            //Vector3 playerRotation = (transform.rotation * moveDirection).normalized;
+            transform.localPosition = transform.localPosition + (transform.rotation * moveDirection * moveSpeed * Time.deltaTime);
+            //rigid.MovePosition(transform.localPosition + (transform.rotation * moveDirection * moveSpeed * Time.deltaTime));
+            //rigid.velocity = transform.rotation * moveDirection * moveSpeed;
         }
     }
     void PlayerJump()

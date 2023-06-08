@@ -75,13 +75,13 @@ public class PlayAgent : Agent
             }
         }
 
-        switch (action[1])
+        switch (action[0])
         {
             case 1: dir = transform.forward; break;
             case 2: dir = -transform.forward; break;
         }
 
-        switch (action[2])
+        switch (action[1])
         {
             case 1: rot = -transform.up; break;
             case 2: rot = transform.up; break;
@@ -91,8 +91,8 @@ public class PlayAgent : Agent
         //this.GetComponent<Rigidbody>().AddForce(dir * 2.0f, ForceMode.VelocityChange);
         //this.transform.TransformPoint((transform.position + dir) * Time.deltaTime);
         StartCoroutine(PlayerMoveML(dir));
-        transform.localPosition = transform.localPosition + (transform.localRotation * dir * 4.0f * Time.deltaTime);
-
+        //transform.localPosition = transform.localPosition + (transform.localRotation * dir * 4.0f * Time.deltaTime);
+        this.GetComponent<Rigidbody>().velocity = dir * 2.0f;
         AddReward(-1.0f / (float)(MaxStep));
 
     }
@@ -106,26 +106,21 @@ public class PlayAgent : Agent
         var action = actionsOut.DiscreteActions;
         //actionsOut.Clear();
 
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetKey(KeyCode.W))
         {
             action[0] = 1;
         }
-
-        if (Input.GetKey(KeyCode.W))
-        {
-            action[1] = 1;
-        }
         if (Input.GetKey(KeyCode.S))
         {
-            action[1] = 2;
+            action[0] = 2;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            action[2] = 1;
+            action[1] = 1;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            action[2] = 2;
+            action[1] = 2;
         }
     }
 

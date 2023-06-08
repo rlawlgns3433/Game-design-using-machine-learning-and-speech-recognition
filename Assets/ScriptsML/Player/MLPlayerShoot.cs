@@ -45,7 +45,7 @@ public class MLPlayerShoot : MonoBehaviour
     }
     IEnumerator WaitforShoot()
     {
-        //playerAnimation.ShootingAnim();
+        playerAnimation.ShootingAnim();
         Shoot();
         yield return new WaitForEndOfFrame();
     }
