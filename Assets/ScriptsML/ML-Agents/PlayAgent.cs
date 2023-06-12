@@ -16,6 +16,9 @@ public class PlayAgent : Agent
     public RayPerceptionSensorComponent3D rayPerceptionSensorComponent3D;
     public bool rw;
     public Vector3 vel, angle_vel;
+    float timer = 0;
+    float timer_max = 5.0f;
+    float minX, maxX, minZ, maxZ;
     #endregion
 
     #region MonoBehaviour
@@ -32,14 +35,18 @@ public class PlayAgent : Agent
 
     public override void Initialize()
     {
-        MaxStep = 3000;
+        MaxStep = 5000;
         rayPerceptionSensorComponent3D = GetComponent<RayPerceptionSensorComponent3D>();
+        minX = transform.position.x;
+        maxX = transform.position.x;
+        minZ = transform.position.z;
+        maxZ = transform.position.z;
     }
 
     public override void OnEpisodeBegin()
     {
         vel = angle_vel = Vector3.zero;
-        //transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+        transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
         ChangeTargetPosition();
     }
 
@@ -57,58 +64,82 @@ public class PlayAgent : Agent
 
     public override void OnActionReceived(ActionBuffers actions)
     {
-        var action = actions.DiscreteActions;
-
+        var discAction = actions.DiscreteActions;
+        var contAction = actions.ContinuousActions;
         // 이동을 구현
-        Vector3 dir = Vector3.zero;
         Vector3 rot = Vector3.zero;
+        Vector3 frontback = Vector3.zero;
+        Vector3 leftright = Vector3.zero;
 
         if (!(RayCastInfo(rayPerceptionSensorComponent3D) == null))
         {
-            if (CheckDistance(RayCastInfo(rayPerceptionSensorComponent3D)) < 3.0f|| CheckDistance(RayCastInfo(rayPerceptionSensorComponent3D)) > 15.0f)
+
+            if (CheckDistance(RayCastInfo(rayPerceptionSensorComponent3D)) < 3.0f || CheckDistance(RayCastInfo(rayPerceptionSensorComponent3D)) > 15.0f)
             {
                 AddReward(-1.0f / (float)MaxStep);
             }
             else
             {
                 AddReward(+0.1f);
+                float angle_btw_v = CheckAngle(RayCastInfo(rayPerceptionSensorComponent3D));
+                if (Mathf.Abs(angle_btw_v) <= 10)
+                {
+                    AddReward(+1.0f);
+                    PlayerController.OnShoot();
+                }
             }
-
-            AddReward(+1.0f / (float)MaxStep);
-
-            float angle_btw_v = CheckAngle(RayCastInfo(rayPerceptionSensorComponent3D));
-            if (Mathf.Abs(angle_btw_v) <= 10)
+            AddReward(+0.3f);
+        }
+        else
+        {
+            if (MinMaxDistance())
             {
-                AddReward(+0.3f);
-                PlayerController.OnShoot();
+                if (Vector3.Distance(new Vector3(minX, 0, minZ), new Vector3(maxX, 0, maxZ)) >= 20)
+                {
+                    AddReward(+0.3f);
+                }
+                else
+                {
+                    AddReward(-0.3f);
+                }
             }
         }
 
 
-
-
-        switch (action[0])
+        switch (discAction[0])
         {
-            case 1: dir = transform.forward; break;
-            case 2: break;
-            //case 2: dir = -transform.forward; break;
+            case 0: break;
+            case 1: frontback = -transform.forward; break;
+            case 2: frontback = transform.forward; break;
+            case 3: frontback = transform.forward; break;
         }
 
-        switch (action[1])
+        switch (discAction[1])
         {
-            case 1: rot = -transform.up; break;
-            case 2: rot = transform.up; break;
+            case 0: break;
+            case 1: leftright = transform.right; break;
+            case 2: leftright = -transform.right; break;
         }
 
-        transform.Rotate(rot, Time.deltaTime * 100.0f);
-        //this.GetComponent<Rigidbody>().AddForce(dir * 2.0f, ForceMode.VelocityChange);
-        //this.transform.TransformPoint((transform.position + dir) * Time.deltaTime);
-        StartCoroutine(PlayerMoveML(dir));
-        //transform.localPosition = transform.localPosition + (transform.localRotation * dir * 5.0f * Time.deltaTime);
-        //this.GetComponent<Rigidbody>().velocity = dir * 2.0f;
-        AddReward(-1.0f / (float)(MaxStep));
+        //switch (discAction[2])
+        //{
+        //    case 0: break;
+        //    case 1: rot = -transform.up; break;
+        //    case 2: rot = transform.up; break;
+        //}
+
+        //Continuous Action
+        Vector3 rotationDir = transform.up * Mathf.Clamp(contAction[0], -1f, 1f);
+
+        Vector3 direction = frontback + leftright;
+
+        transform.Rotate(rotationDir, Time.deltaTime * 150f);
+        StartCoroutine(PlayerMoveML(direction));
+
+
 
     }
+
     IEnumerator PlayerMoveML(Vector3 dir)
     {
         transform.localPosition = transform.localPosition + (transform.localRotation * dir * 7.0f * Time.deltaTime);
@@ -206,28 +237,35 @@ public class PlayAgent : Agent
 
     public void ChangeTargetPosition()
     {
-        float rangeX = 31.0f;
-        float rangeY = -31.0f;
+        float rangeX = 46.0f;
+        float rangeY = -46.0f;
         float randX = Random.Range(rangeX, rangeY);
         float randZ = Random.Range(rangeX, rangeY);
-        if (Mathf.Abs(randZ) <= 22 && Mathf.Abs(randZ) > 16)
-        {
-            do {
-                randX = Random.Range(rangeX, rangeY);
-            } while (Mathf.Abs(randX) <= 20.5 && Mathf.Abs(randX) > 4);
-        }
-        else if (Mathf.Abs(randZ) <= 16 && Mathf.Abs(randZ) > 11)
-        {
-            do{
-                randX = Random.Range(rangeX, rangeY);
-            } while (Mathf.Abs(randX) <= 20.5 && Mathf.Abs(randX) > 11.5);
-        }
-        else if (Mathf.Abs(randZ) <= 11 && Mathf.Abs(randZ) > 3)
-        {
-            do{
-                randX = Random.Range(rangeX, rangeY);
-            } while (Mathf.Abs(randX) <= 20.5 && Mathf.Abs(randX) > 15.5);
-        }
+        //float rangeX = 31.0f;
+        //float rangeY = -31.0f;
+        //float randX = Random.Range(rangeX, rangeY);
+        //float randZ = Random.Range(rangeX, rangeY);
+        //if (Mathf.Abs(randZ) <= 22 && Mathf.Abs(randZ) > 16)
+        //{
+        //    do
+        //    {
+        //        randX = Random.Range(rangeX, rangeY);
+        //    } while (Mathf.Abs(randX) <= 20.5 && Mathf.Abs(randX) > 4);
+        //}
+        //else if (Mathf.Abs(randZ) <= 16 && Mathf.Abs(randZ) > 11)
+        //{
+        //    do
+        //    {
+        //        randX = Random.Range(rangeX, rangeY);
+        //    } while (Mathf.Abs(randX) <= 20.5 && Mathf.Abs(randX) > 11.5);
+        //}
+        //else if (Mathf.Abs(randZ) <= 11 && Mathf.Abs(randZ) > 3)
+        //{
+        //    do
+        //    {
+        //        randX = Random.Range(rangeX, rangeY);
+        //    } while (Mathf.Abs(randX) <= 20.5 && Mathf.Abs(randX) > 15.5);
+        //}
         Target.transform.localPosition = new Vector3(randX, 1.0f, randZ);
     }
 
@@ -244,5 +282,31 @@ public class PlayAgent : Agent
     {
         float dis = Vector3.Distance(enemy.transform.position, transform.position);
         return dis;
+    }
+
+    public bool MinMaxDistance()
+    {
+
+        if (timer <= 0)
+        {
+            timer = timer_max;
+            minX = transform.position.x;
+            maxX = transform.position.x;
+            minZ = transform.position.z;
+            maxZ = transform.position.z;
+            return true;
+
+        }
+        else
+        {
+            timer -= Time.deltaTime;
+            minX = Mathf.Min(minX, transform.position.x);
+            minZ = Mathf.Min(minZ, transform.position.z);
+            maxX = Mathf.Max(maxX, transform.position.x);
+            maxZ = Mathf.Max(maxZ, transform.position.z);
+            return false;
+        }
+
+
     }
 }

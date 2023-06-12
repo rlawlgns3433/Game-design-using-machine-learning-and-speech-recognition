@@ -1,0 +1,56 @@
+{
+    "Shooting": {
+        "checkpoints": [
+            {
+                "steps": 499998,
+                "file_path": "results\\RayShoot0610\\Shooting\\Shooting-499998.onnx",
+                "reward": null,
+                "creation_time": 1686371139.179721,
+                "auxillary_file_paths": [
+                    "results\\RayShoot0610\\Shooting\\Shooting-499998.pt"
+                ]
+            },
+            {
+                "steps": 999999,
+                "file_path": "results\\RayShoot0610\\Shooting\\Shooting-999999.onnx",
+                "reward": null,
+                "creation_time": 1686372962.799995,
+                "auxillary_file_paths": [
+                    "results\\RayShoot0610\\Shooting\\Shooting-999999.pt"
+                ]
+            },
+            {
+                "steps": 1499997,
+                "file_path": "results\\RayShoot0610\\Shooting\\Shooting-1499997.onnx",
+                "reward": null,
+                "creation_time": 1686374837.1281078,
+                "auxillary_file_paths": [
+                    "results\\RayShoot0610\\Shooting\\Shooting-1499997.pt"
+                ]
+            },
+            {
+                "steps": 1574307,
+                "file_path": "results\\RayShoot0610\\Shooting\\Shooting-1574307.onnx",
+                "reward": null,
+                "creation_time": 1686375118.8291218,
+                "auxillary_file_paths": [
+                    "results\\RayShoot0610\\Shooting\\Shooting-1574307.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1574307,
+            "file_path": "results\\RayShoot0610\\Shooting.onnx",
+            "reward": null,
+            "creation_time": 1686375118.8291218,
+            "auxillary_file_paths": [
+                "results\\RayShoot0610\\Shooting\\Shooting-1574307.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}

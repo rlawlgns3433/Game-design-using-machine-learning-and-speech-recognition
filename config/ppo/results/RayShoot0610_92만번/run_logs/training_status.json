@@ -1,0 +1,38 @@
+{
+    "Shooting": {
+        "checkpoints": [
+            {
+                "steps": 499998,
+                "file_path": "results\\RayShoot0610\\Shooting\\Shooting-499998.onnx",
+                "reward": null,
+                "creation_time": 1686340597.8332098,
+                "auxillary_file_paths": [
+                    "results\\RayShoot0610\\Shooting\\Shooting-499998.pt"
+                ]
+            },
+            {
+                "steps": 924000,
+                "file_path": "results\\RayShoot0610\\Shooting\\Shooting-924000.onnx",
+                "reward": null,
+                "creation_time": 1686342596.3525045,
+                "auxillary_file_paths": [
+                    "results\\RayShoot0610\\Shooting\\Shooting-924000.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 924000,
+            "file_path": "results\\RayShoot0610\\Shooting.onnx",
+            "reward": null,
+            "creation_time": 1686342596.3525045,
+            "auxillary_file_paths": [
+                "results\\RayShoot0610\\Shooting\\Shooting-924000.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}

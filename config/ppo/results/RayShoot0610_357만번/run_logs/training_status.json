@@ -1,0 +1,65 @@
+{
+    "Shooting": {
+        "checkpoints": [
+            {
+                "steps": 1999998,
+                "file_path": "results\\RayShoot0610\\Shooting\\Shooting-1999998.onnx",
+                "reward": null,
+                "creation_time": 1686357058.0253453,
+                "auxillary_file_paths": [
+                    "results\\RayShoot0610\\Shooting\\Shooting-1999998.pt"
+                ]
+            },
+            {
+                "steps": 2499999,
+                "file_path": "results\\RayShoot0610\\Shooting\\Shooting-2499999.onnx",
+                "reward": null,
+                "creation_time": 1686358880.4669168,
+                "auxillary_file_paths": [
+                    "results\\RayShoot0610\\Shooting\\Shooting-2499999.pt"
+                ]
+            },
+            {
+                "steps": 2999997,
+                "file_path": "results\\RayShoot0610\\Shooting\\Shooting-2999997.onnx",
+                "reward": null,
+                "creation_time": 1686360676.8152995,
+                "auxillary_file_paths": [
+                    "results\\RayShoot0610\\Shooting\\Shooting-2999997.pt"
+                ]
+            },
+            {
+                "steps": 3499998,
+                "file_path": "results\\RayShoot0610\\Shooting\\Shooting-3499998.onnx",
+                "reward": null,
+                "creation_time": 1686362518.2471886,
+                "auxillary_file_paths": [
+                    "results\\RayShoot0610\\Shooting\\Shooting-3499998.pt"
+                ]
+            },
+            {
+                "steps": 3574872,
+                "file_path": "results\\RayShoot0610\\Shooting\\Shooting-3574872.onnx",
+                "reward": null,
+                "creation_time": 1686362819.915023,
+                "auxillary_file_paths": [
+                    "results\\RayShoot0610\\Shooting\\Shooting-3574872.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 3574872,
+            "file_path": "results\\RayShoot0610\\Shooting.onnx",
+            "reward": null,
+            "creation_time": 1686362819.915023,
+            "auxillary_file_paths": [
+                "results\\RayShoot0610\\Shooting\\Shooting-3574872.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}

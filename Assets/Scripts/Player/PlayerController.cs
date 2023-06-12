@@ -1,7 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System;
-
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,9 +9,15 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveDirection;
     private bool enShoot = true;
 
+    public float input_x;
+    public float input_y;
     [Header("Move Value Adjust")]
     [SerializeField]
     private float moveSpeed = 4f;
+    float targetRotation;
+    float rotationVelocity;
+    float rotationSmoothTime;
+
 
     [Header("Jump Value Adjust")]
     [SerializeField]
@@ -20,6 +26,12 @@ public class PlayerController : MonoBehaviour
     private float jumpTimer;
     [SerializeField]
     private float jumpPower = 3f;
+
+    [Header("Look Value Adjust")]
+
+    [SerializeField]
+    [Tooltip("마우스 감도")]
+    private float mouseLookSensitivity = 1.0f;
 
     [Header("Cinemachine")]
 
@@ -56,14 +68,16 @@ public class PlayerController : MonoBehaviour
         }
         JumpDelayTimer();
         PlayerMove();
+        OnClickESC();
     }
     void OnMove(InputValue value)
     {
         Vector2 input = value.Get<Vector2>();
         if (input != null)
         {
-            moveDirection = new Vector3(input.x, 0f, input.y);
+            moveDirection = new Vector3(input.x, 0f,input.y);
             enShoot = false;
+
         }
     }
     void OnLook(InputValue value)
@@ -73,9 +87,8 @@ public class PlayerController : MonoBehaviour
             Vector2 input = value.Get<Vector2>();
             if (input.sqrMagnitude >= 0.01f)
             {
-                float deltaTimeMultiplier = 1.0f;
-                cinemachineTargetYaw += input.x * deltaTimeMultiplier;
-                cinemachineTargetPitch += input.y * deltaTimeMultiplier;
+                cinemachineTargetYaw += input.x * mouseLookSensitivity;
+                cinemachineTargetPitch += input.y * mouseLookSensitivity;
 
             }
             cinemachineTargetYaw = ClampAngle(cinemachineTargetYaw, float.MinValue, float.MaxValue);
@@ -93,7 +106,7 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-    void OnShoot()
+    public void OnShoot()
     {
         if (enShoot)
         {
@@ -106,7 +119,11 @@ public class PlayerController : MonoBehaviour
         bool hasControl = (moveDirection != Vector3.zero);
         if (hasControl)
         {
-            transform.position += (moveDirection * moveSpeed * Time.deltaTime);
+            moveDirection = moveDirection.normalized;
+            //Vector3 playerRotation = (transform.rotation * moveDirection).normalized;
+            transform.localPosition = transform.localPosition + (transform.rotation * moveDirection * moveSpeed * Time.deltaTime);
+            //rigid.MovePosition(transform.localPosition + (transform.rotation * moveDirection * moveSpeed * Time.deltaTime));
+            //rigid.velocity = transform.rotation * moveDirection * moveSpeed;
         }
     }
     void PlayerJump()
@@ -129,5 +146,13 @@ public class PlayerController : MonoBehaviour
     private void OnApplicationFocus(bool hasFocus)
     {
         Cursor.lockState = hasFocus ? CursorLockMode.Locked : CursorLockMode.None;
+    }
+    private void OnClickESC()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Cursor.lockState = CursorLockMode.None;
+
+        }
     }
 }

@@ -2,22 +2,22 @@
     "Shooting": {
         "checkpoints": [
             {
-                "steps": 6626,
-                "file_path": "results\\RayShoot0608\\Shooting\\Shooting-6626.onnx",
-                "reward": -0.9999999776482582,
-                "creation_time": 1686207588.3790803,
+                "steps": 190437,
+                "file_path": "results\\RayShoot0608\\Shooting\\Shooting-190437.onnx",
+                "reward": null,
+                "creation_time": 1686218901.4120388,
                 "auxillary_file_paths": [
-                    "results\\RayShoot0608\\Shooting\\Shooting-6626.pt"
+                    "results\\RayShoot0608\\Shooting\\Shooting-190437.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 6626,
+            "steps": 190437,
             "file_path": "results\\RayShoot0608\\Shooting.onnx",
-            "reward": -0.9999999776482582,
-            "creation_time": 1686207588.3790803,
+            "reward": null,
+            "creation_time": 1686218901.4120388,
             "auxillary_file_paths": [
-                "results\\RayShoot0608\\Shooting\\Shooting-6626.pt"
+                "results\\RayShoot0608\\Shooting\\Shooting-190437.pt"
             ]
         }
     },
