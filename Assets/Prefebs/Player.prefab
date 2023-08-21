@@ -1553,11 +1553,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4540218670705304380}
   - component: {fileID: 4540218670705304355}
+  - component: {fileID: 4540218670705304358}
   - component: {fileID: 4540218670705304354}
   - component: {fileID: 4540218670705304353}
   - component: {fileID: 4540218670705304352}
   - component: {fileID: 4540218670705304359}
-  - component: {fileID: 4540218670705304358}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1603,6 +1603,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &4540218670705304358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4540218670705304357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05c61eead6bd87048a85e7bb3638bfb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input_x: 0
+  input_y: 0
+  moveSpeed: 4
+  jumpDelay: 1
+  jumpTimer: 0
+  jumpPower: 4
+  mouseLookSensitivity: 0.6
+  CinemachineCameraTarget: {fileID: 4540218669201864791}
+  cursorInputForLook: 1
+  TopClamp: 45
+  BottomClamp: -45
+  CameraAngleOverride: 0
 --- !u!114 &4540218670705304354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1681,30 +1705,6 @@ MonoBehaviour:
   m_DefaultActionMap: PlayerActions
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &4540218670705304358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4540218670705304357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05c61eead6bd87048a85e7bb3638bfb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  input_x: 0
-  input_y: 0
-  moveSpeed: 4
-  jumpDelay: 1
-  jumpTimer: 0
-  jumpPower: 4
-  mouseLookSensitivity: 0.6
-  CinemachineCameraTarget: {fileID: 4540218669201864791}
-  cursorInputForLook: 1
-  TopClamp: 45
-  BottomClamp: -45
-  CameraAngleOverride: 0
 --- !u!1 &4540218670728575323
 GameObject:
   m_ObjectHideFlags: 0
