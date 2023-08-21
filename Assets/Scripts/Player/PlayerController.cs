@@ -89,10 +89,10 @@ public class PlayerController : MonoBehaviour
             {
                 cinemachineTargetYaw += input.x * mouseLookSensitivity;
                 cinemachineTargetPitch += input.y * mouseLookSensitivity;
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
+//=======
+//>>>>>>> Stashed changes
             }
             cinemachineTargetYaw = ClampAngle(cinemachineTargetYaw, float.MinValue, float.MaxValue);
             cinemachineTargetPitch = ClampAngle(cinemachineTargetPitch, BottomClamp, TopClamp);
@@ -122,14 +122,14 @@ public class PlayerController : MonoBehaviour
         if (hasControl)
         {
             moveDirection = moveDirection.normalized;
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
             //Vector3 playerRotation = (transform.rotation * moveDirection).normalized;
             transform.localPosition = transform.localPosition + (transform.rotation * moveDirection * moveSpeed * Time.deltaTime);
             //rigid.MovePosition(transform.localPosition + (transform.rotation * moveDirection * moveSpeed * Time.deltaTime));
             //rigid.velocity = transform.rotation * moveDirection * moveSpeed;
-=======
+//=======
             transform.localPosition = transform.localPosition + (transform.rotation * moveDirection * moveSpeed * Time.deltaTime);
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
         }
     }
     void PlayerJump()
@@ -158,10 +158,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Cursor.lockState = CursorLockMode.None;
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
+//=======
+//>>>>>>> Stashed changes
         }
     }
 }
